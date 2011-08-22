@@ -3,15 +3,6 @@ class Question < ActiveRecord::Base
   def all
     @all ||= self.class.all
   end
-    
-  # alternate version
-#   def gimme_ten
-#     j = Array.new(tenvalues)
-#     0.upto(tenvalues-1) do |i|
-#       j[i] = rand(all.length - 1)
-#     end
-#     j
-#   end
 
   def gimme_questions
     out = []
