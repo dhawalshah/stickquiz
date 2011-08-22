@@ -19,7 +19,7 @@ class Question < ActiveRecord::Base
     while out.length < max
       j = rand(max)
       unless out.member? j
-        out << j
+        out << j+1
       end
     end
     out
