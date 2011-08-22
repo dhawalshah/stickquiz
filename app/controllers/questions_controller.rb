@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
         f.html
       end
     else
-      redirect_to 'questions#result'
+      redirect_to result_url
     end
   end
 

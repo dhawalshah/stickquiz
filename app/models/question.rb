@@ -17,9 +17,9 @@ class Question < ActiveRecord::Base
     out = []
     max = all.length<10 ? all.length : 10
     while out.length < max
-      j = rand(max)
+      j = rand(max) + 1 
       unless out.member? j
-        out << j+1
+        out << j
       end
     end
     out
