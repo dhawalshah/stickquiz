@@ -9,6 +9,7 @@ class QuizzesController < ApplicationController
 #    puts @question_ids
 #    puts session.inspect
     redirect_to nextq_url 
+  end
 
   # GET /result
   def result
