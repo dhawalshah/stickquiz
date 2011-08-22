@@ -5,13 +5,24 @@ class Question < ActiveRecord::Base
   end
     
   # alternate version
-  def gimme_ten
-    tenvalues = 10
-    j = Array.new(tenvalues)
-    0.upto(tenvalues-1) do |i|
-      j[i] = rand(all.length - 1)
+#   def gimme_ten
+#     j = Array.new(tenvalues)
+#     0.upto(tenvalues-1) do |i|
+#       j[i] = rand(all.length - 1)
+#     end
+#     j
+#   end
+
+  def gimme_questions
+    out = []
+    max = all.length<10 ? all.length : 10
+    while out.length < max
+      j = rand(max)
+      unless out.member? j
+        out << j
+      end
     end
-    j
+    out
   end
-  
+
 end

@@ -1,11 +1,12 @@
 class QuestionsController < ApplicationController
-  # GET /questions/1
+  # GET /questions/1/show
   def show
-    @id = params[:question_ids][params[:current]]
+    puts session.inspect
+    @id = session[:question_ids][session[:current]]
     @question = Question.find @id
-    params[:current] = params[:current] + 1
+    session[:current] = session[:current] + 1
 
-    if params[:current] < 10
+    if session[:current] < 10
       respond_to do |f|
         f.html
       end

@@ -4,10 +4,12 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.xml
   def index
-    @question_ids = Question.new.gimme_ten
-    params[:question_ids] = @question_ids
-    params[:current] = 0
-    redirect_to 'questions#show'
+    @question_ids = Question.new.gimme_questions
+    session[:question_ids] = @question_ids
+    session[:current] = 0
+    puts @question_ids
+    puts session.inspect
+    redirect_to questions_url
   end
   
 private
