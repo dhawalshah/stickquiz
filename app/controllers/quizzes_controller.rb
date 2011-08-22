@@ -1,83 +1,36 @@
 class QuizzesController < ApplicationController
+  before_filter :questions_left?
+  
   # GET /quizzes
   # GET /quizzes.xml
   def index
-    @quizzes = Quiz.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @quizzes }
-    end
-  end
-
-  # GET /quizzes/1
-  # GET /quizzes/1.xml
-  def show
-    @quiz = Quiz.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @quiz }
-    end
-  end
-
-  # GET /quizzes/new
-  # GET /quizzes/new.xml
-  def new
-    @quiz = Quiz.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @quiz }
-    end
-  end
-
-  # GET /quizzes/1/edit
-  def edit
-    @quiz = Quiz.find(params[:id])
-  end
-
-  # POST /quizzes
-  # POST /quizzes.xml
-  def create
-    @quiz = Quiz.new(params[:quiz])
-
-    respond_to do |format|
-      if @quiz.save
-        format.html { redirect_to(@quiz, :notice => 'Quiz was successfully created.') }
-        format.xml  { render :xml => @quiz, :status => :created, :location => @quiz }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @quiz.errors, :status => :unprocessable_entity }
+    @questions = Question.gimme_ten
+    
+    puts @questions
+    
+    if @questions_left > 0
+      respond_to do |format|
+        format.html # index.html.erb
       end
+    else
+      redirect_to :result
     end
   end
 
-  # PUT /quizzes/1
-  # PUT /quizzes/1.xml
-  def update
-    @quiz = Quiz.find(params[:id])
 
-    respond_to do |format|
-      if @quiz.update_attributes(params[:quiz])
-        format.html { redirect_to(@quiz, :notice => 'Quiz was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @quiz.errors, :status => :unprocessable_entity }
-      end
+  # GET /result
+  def result
+    
+    respond_to do |f|
+      f.html
     end
   end
-
-  # DELETE /quizzes/1
-  # DELETE /quizzes/1.xml
-  def destroy
-    @quiz = Quiz.find(params[:id])
-    @quiz.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(quizzes_url) }
-      format.xml  { head :ok }
-    end
+  
+  
+private
+  
+  def questions_left?
+    @questions_left ||= 10  
   end
+  
 end
