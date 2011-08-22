@@ -1,6 +1,7 @@
 Stickquiz::Application.routes.draw do
   resources :quizzes, :only => :index
-  match '/result' => 'quizzes#result'
+  match '/questions/:id' => 'questions#show'
+  match '/questions/result' => 'questions#result'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

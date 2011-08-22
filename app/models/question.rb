@@ -1,18 +1,15 @@
 class Question < ActiveRecord::Base
-  
-  def initialize
-    @all = self.all
+
+  def all
+    @all ||= self.class.all
   end
-  
-  def gimme_ten
-    randomize_this.map {|i| @all[i]}
-  end
-  
+    
   # alternate version
-  def randomize_this
-    j = Array.new(10)
-    0.upto(9) do |i|
-      j[i] = rand(@all.length - 1)
+  def gimme_ten
+    tenvalues = 10
+    j = Array.new(tenvalues)
+    0.upto(tenvalues-1) do |i|
+      j[i] = rand(all.length - 1)
     end
     j
   end

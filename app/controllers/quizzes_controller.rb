@@ -4,28 +4,11 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.xml
   def index
-    @questions = Question.gimme_ten
-    
-    puts @questions
-    
-    if @questions_left > 0
-      respond_to do |format|
-        format.html # index.html.erb
-      end
-    else
-      redirect_to :result
-    end
+    @question_ids = Question.new.gimme_ten
+    params[:question_ids] = @question_ids
+    params[:current] = 0
+    redirect_to 'questions#show'
   end
-
-
-  # GET /result
-  def result
-    
-    respond_to do |f|
-      f.html
-    end
-  end
-  
   
 private
   
