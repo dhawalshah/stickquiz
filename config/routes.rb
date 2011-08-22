@@ -1,7 +1,7 @@
 Stickquiz::Application.routes.draw do
-  resources :quizzes, :only => :index
-  match 'questions/show' => 'questions#show', :as => :questions
-  match 'questions/result' => 'questions#result', :as => :result
+  match 'start'            => 'quizzes#start',    :as => :start
+  match 'nextq'             => 'questions#nextq',   :as => :nextq
+  match 'result'           => 'quizzes#result',   :as => :result
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,7 +52,7 @@ Stickquiz::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "quizzes#index"
+  root :to => "quizzes#start"
 
   # See how all your routes lay out with "rake routes"
 

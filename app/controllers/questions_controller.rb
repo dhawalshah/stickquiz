@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
-  # GET /questions/1/show
-  def show
-    puts session.inspect
+  # GET /nextq
+  def nextq
+#    puts session.inspect
     @id = session[:question_ids][session[:current]]
     @question = Question.find @id
     session[:current] = session[:current] + 1
@@ -14,12 +14,4 @@ class QuestionsController < ApplicationController
       redirect_to result_url
     end
   end
-
-  # GET /questions/result
-  def result
-    respond_to do |f|
-      f.html
-    end
-  end
-  
 end
