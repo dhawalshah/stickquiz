@@ -1,7 +1,9 @@
 Stickquiz::Application.routes.draw do
   match 'start'            => 'quizzes#start',    :as => :start
-  match 'nextq'             => 'questions#nextq',   :as => :nextq
   match 'result'           => 'quizzes#result',   :as => :result
+  match 'nextq'            => 'questions#nextq',  :as => :nextq
+  match 'next'             => 'questions#next',   :as => :next
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

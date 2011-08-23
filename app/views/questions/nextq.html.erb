@@ -1,5 +1,13 @@
-<%= @question.inspect %>
 
-<div id="chart_goes_here"></div>
+<div id="chart_goes_here">
+</div>
+
+<%= form_tag nextq_path, :method => :get, :id => "nextqform" do %>
+  <%= submit_tag "Next", :name => nil %>
+<% end %>
+
+<div id="question">
+  <%= @question.inspect %>
+</div>
 
 SELECTING THE RADIO BUTTON SHOULD REDIRECT TO /questions/:(id+1)

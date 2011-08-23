@@ -1,17 +1,35 @@
 class QuestionsController < ApplicationController
   # GET /nextq
   def nextq
-#    puts session.inspect
-    @id = session[:question_ids][session[:current]]
-    @question = Question.find @id
-    session[:current] = session[:current] + 1
 
-    if session[:current] < 10
-      respond_to do |f|
-        f.html
-      end
-    else
-      redirect_to result_url
+    respond_to do |f|
+      f.html
+    end
+  end
+
+  # GET /next.js
+  def next
+    @current = session[:current]
+    @id = session[:question_ids][@current]
+    @question = Question.find @id
+    session[:current] = @current + 1
+    
+    # TODO -- test data, needs to be incorporated into Question model
+    @random_data = [['Mon', rand*100, rand*100, rand*100, rand*100],
+                    ['Tue', rand*100, rand*100, rand*100, rand*100],
+                    ['Wed', rand*100, rand*100, rand*100, rand*100],
+                    ['Thu', rand*100, rand*100, rand*100, rand*100],
+                    ['Fri', rand*100, rand*100, rand*100, rand*100]
+                   ]
+
+    @hash = { :question => @current,
+              :qid      => @id,
+              :image    => @question.image,
+              :answer   => @question.answer 
+            }
+
+    respond_to do |format|
+      format.js
     end
   end
 end
