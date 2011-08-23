@@ -2,16 +2,21 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Use Sqlite in development env
+group :development, :test do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+end
 
-gem 'sqlite3'
+# Use MySQL for the real deal
+group :production do
+  #gem 'mysql2'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
