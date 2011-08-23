@@ -10,6 +10,7 @@ end
 # Use MySQL for the real deal
 group :production do
   #gem 'mysql2'
+  gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
 # Use unicorn as the web server
