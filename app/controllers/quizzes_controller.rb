@@ -1,5 +1,4 @@
 class QuizzesController < ApplicationController
-  before_filter :questions_left?
   
   # GET /start
   def start
@@ -16,12 +15,6 @@ class QuizzesController < ApplicationController
     respond_to do |f|
       f.html
     end
-  end
-
-private
-
-  def questions_left?
-    @questions_left ||= 10  
   end
 
 end

@@ -1,8 +1,50 @@
 
+<form name="counter"><input type="text" size="8" 
+name="d2"></form> 
+
+<script> 
+var expire = function() {
+  jQuery.get('/nextq',  null , null, 'html' )
+}
+
+setTimeout("expire()",10000);
+
+
+<!-- 
+// 
+ var milisec=0 
+ var seconds=10
+ document.counter.d2.value='10' 
+
+function display(){ 
+ if (milisec<=0){ 
+    milisec=9 
+    seconds-=1 
+ } 
+ if (seconds<=-1){ 
+    milisec=0 
+    seconds+=1 
+ } 
+ else 
+    milisec-=1 
+    document.counter.d2.value=seconds+"."+milisec 
+    setTimeout("display()",100) 
+} 
+display() 
+--> 
+</script> 
+
 <div id="chart_goes_here">
+  <img src="<%= @question.image %>" />
 </div>
 
+
 <%= form_tag nextq_path, :method => :get, :id => "nextqform" do %>
+  <% @options.each do |o| %>
+    <%= radio_button_tag('answer', o[:id]) %>
+    <%= label_tag :answer, o[:value] %>
+    <br />
+  <% end %>
   <%= submit_tag "Next", :name => nil %>
 <% end %>
 
