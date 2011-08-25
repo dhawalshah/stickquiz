@@ -2,19 +2,12 @@
 <form name="counter"><input type="text" size="8" 
 name="d2"></form> 
 
-<script> 
-var expire = function() {
-  jQuery.get('/nextq',  null , null, 'html' )
-}
-
-setTimeout("expire()",10000);
-
-
-<!-- 
-// 
- var milisec=0 
- var seconds=10
- document.counter.d2.value='10' 
+<script>  
+ window.onload = display;
+ 
+ var milisec= 0 
+ var seconds= <%= "#{@timerDuration}" %>
+ document.counter.d2.value= <%= "\'#{@timerDuration}\'"%>
 
 function display(){ 
  if (milisec<=0){ 
@@ -23,15 +16,24 @@ function display(){
  } 
  if (seconds<=-1){ 
     milisec=0 
-    seconds+=1 
+    seconds+=1
+    submitTags();
  } 
  else 
-    milisec-=1 
-    document.counter.d2.value=seconds+"."+milisec 
-    setTimeout("display()",100) 
+    milisec-=1
+     
+ document.counter.d2.value= seconds+"."+milisec 
+ setTimeout("display()",100) 
 } 
-display() 
---> 
+
+function submitTags()
+{
+  var btnSubmitTags = document.getElementById('timerSubmit');
+
+  // Programmatically click the submit button
+  btnSubmitTags.click();
+}
+ 
 </script> 
 
 <div id="chart_goes_here">
@@ -39,13 +41,12 @@ display()
 </div>
 
 
-<%= form_tag nextq_path, :method => :get, :id => "nextqform" do %>
+<%= form_tag nextq_path, :method => :post, :id => "nextqform" do %>
   <% @options.each do |o| %>
-    <%= radio_button_tag('answer', o[:id]) %>
-    <%= label_tag :answer, o[:value] %>
+    <%=  radio_button_tag 'answer', o[:id], false, :onclick => "this.parentNode.submit();" %>&nbsp;<%= label_tag :answer, o[:value] %>&nbsp;
     <br />
   <% end %>
-  <%= submit_tag "Next", :name => nil %>
+  <%= submit_tag "Next", :id => 'timerSubmit', :style => "display:none" %>
 <% end %>
 
 <div id="question">

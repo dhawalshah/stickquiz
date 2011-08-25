@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <td>Qsn</td>
+    <td>Image</td>
+    <td>Correct Answer</td>
+    <td>Your Answer</td>
+  </tr>
+<% debugger %>
+<% for i in 0..9 %>
+  <tr>
+    <td><%= (i+1).to_s %></td>
+    <td><img src="<%= @questions[i].image %>" /></td>
+    <td><%= @correct_answers[i] %></td>
+    <td><%= @submitted_answers[i] %></td>
+  </tr>
+<% end %>
+</table>

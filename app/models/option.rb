@@ -9,10 +9,11 @@ class Option < ActiveRecord::Base
     max = 4
     while out.length < max
       j = rand(all.length) + 1 
-      unless out.member? j
+      unless out.map{|o| o[:id]}.member? j
         out << { :id => j, :value => self.class.find(j).name }      
       end
     end
+    puts out
     out.shuffle
   end
 end

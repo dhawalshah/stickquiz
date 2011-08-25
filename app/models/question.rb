@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   def all
     @all ||= self.class.all
   end
-
+  
   def gimme_questions
     out = []
     max = all.length<10 ? all.length : 10

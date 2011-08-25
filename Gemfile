@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
+#gem 'ruby-debug'
 
 # Use Sqlite in development env
 group :development, :test do
