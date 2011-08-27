@@ -29,6 +29,7 @@ set :scm_username, "manur"
 set :repository, "git@github.com:dhawalshah/stickquiz.git"
 set :branch, "master"
 set :git_enable_submodules, 1
+set :rake, "bundle exec rake"
 
 # tasks
 namespace :deploy do
@@ -59,5 +60,6 @@ namespace :passenger do
 end
 
 after :deploy, "passenger:restart"
+after "deploy", "deploy:migrate"
 after 'deploy:update_code', 'deploy:symlink_shared'
 
