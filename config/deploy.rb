@@ -8,7 +8,7 @@ require 'bundler/capistrano'
 
 set :nice_name, "Stickquiz"
 set :application, "stickquiz"
-set :domain, "stickquiz.raghavan.info"
+#set :domain, "stickquiz.raghavan.info"
 #set :repository,  "git@#{domain}:/home/git/repositories/#{application}.git"
 
 role :web, "#{domain}"                          # Your HTTP server, Apache/etc
@@ -16,7 +16,7 @@ role :app, "#{domain}"                          # This may be the same as your `
 role :db,  "#{domain}", :primary => true # This is where Rails migrations will run
 # # server details
 set :default_run_options, {:pty => true}
-set :ssh_options, {:forward_agent => true, :keys => "~/.ec2/alphabet.pem"}
+#set :ssh_options, {:forward_agent => true, :keys => "~/.ec2/alphabet.pem"}
 #ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
 
 set :deploy_to, "/var/www/#{application}/"
