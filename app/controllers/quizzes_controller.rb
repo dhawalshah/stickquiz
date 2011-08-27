@@ -2,13 +2,17 @@ class QuizzesController < ApplicationController
   
   # GET /start
   def start
-    @question_ids = Question.new.gimme_questions
-    session[:question_ids] = @question_ids
-    session[:current] = 0
-    session[:submitted_answer] =  Array.new(10)
 #    puts @question_ids
 #    puts session.inspect
-    redirect_to nextq_url 
+    if request.post?
+      #start quiz once user has selected timer duration
+      session[:timerDuration] = params[:timer]
+      @question_ids = Question.new.gimme_questions
+      session[:question_ids] = @question_ids
+      session[:current] = 0
+      session[:submitted_answer] =  Array.new(10)
+      redirect_to nextq_url 
+    end
   end
 
   # GET /result

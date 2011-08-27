@@ -1,0 +1,16 @@
+<div id="intro">
+  <h1>What is StickQuiz?</h1>
+  <p>StickQuiz is for budding traders who wish to improve their candlestick analysis. Being able to identify patterns on a chart in the shortest possible time is paramount to successful analysis and eventual trading. Through StickQuiz, they can test their knowledge of different patterns with a time trial. Each quiz has 10 questions and you can begin by selecting your timer duration below and clicking Go!</p>
+</div>
+<div id="timerForm">
+  <h2>Choose your timer:</h2>
+  <%= form_tag do %>
+    <%= radio_button_tag 'timer', "5" %>
+    <%= label_tag(:timer_5, "5s") %> <br />
+    <%= radio_button_tag 'timer', "10",true %>
+    <%= label_tag(:timer_10, "10s") %> <br />
+    <%= radio_button_tag 'timer', "30" %>
+    <%= label_tag(:timer_30, "30s") %><br />
+    <%= submit_tag "Go", :id => 'quizStart' %>
+  <% end %>
+</div>

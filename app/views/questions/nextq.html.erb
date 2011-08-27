@@ -1,42 +1,8 @@
+<div id="timer">
+  Time Left: <div id="timerText"><%= @timerDuration %></div>s
+</div>
 
-<form name="counter"><input type="text" size="8" 
-name="d2"></form> 
-
-<script>  
- window.onload = display;
- 
- var milisec= 0 
- var seconds= <%= "#{@timerDuration}" %>
- document.counter.d2.value= <%= "\'#{@timerDuration}\'"%>
-
-function display(){ 
- if (milisec<=0){ 
-    milisec=9 
-    seconds-=1 
- } 
- if (seconds<=-1){ 
-    milisec=0 
-    seconds+=1
-    submitTags();
- } 
- else 
-    milisec-=1
-     
- document.counter.d2.value= seconds+"."+milisec 
- setTimeout("display()",100) 
-} 
-
-function submitTags()
-{
-  var btnSubmitTags = document.getElementById('timerSubmit');
-
-  // Programmatically click the submit button
-  btnSubmitTags.click();
-}
- 
-</script> 
-
-<div id="chart_goes_here">
+<div id="chart">
   <img src="<%= @question.image %>" />
 </div>
 
@@ -49,8 +15,5 @@ function submitTags()
   <%= submit_tag "Next", :id => 'timerSubmit', :style => "display:none" %>
 <% end %>
 
-<div id="question">
-  <%= @question.inspect %>
-</div>
-
-SELECTING THE RADIO BUTTON SHOULD REDIRECT TO /questions/:(id+1)
+<!-- Figure out a way to place this js in the application.erb to make code clean-->
+<%= javascript_include_tag 'question.js' %>
